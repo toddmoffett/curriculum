@@ -1,0 +1,217 @@
+<!DOCTYPE html><html><head>
+  <title>Title</title>
+  <meta charset='utf-8'>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+    body { font-family: 'Droid Serif'; font-size:10px; }
+    p, li, h3 {font-size: 24px;}
+    h1 {font-size: 42px;}
+    h2 {font-size: 36px;}
+    h3 {font-size: 30px;}
+    h4 {font-size: 24px;}
+    h5 {font-size: 18px;}
+    h1, h2, h3 {font-family: 'Yanone Kaffeesatz'; font-weight: normal;}
+    #banner { position: relative; left: -65px; top: -16px; width: 910px; height:55px; background-color: black; z-index: 9999}
+    #masthead { top: 0; padding: 0 1rem; position: absolute; z-index: 888; width: 100%; height: 3.5rem }
+    #title, #masthead #logo {position: absolute; top: 0px;}
+    #logo img {margin-top: 5px; margin-left: 5px} 
+    #title {color: white; right: 0px; text-align: right; margin-top: 0px; top: -8px; margin-right:10px}
+    #logo {left: 0px;}
+    #logo a img {width: 400px;}
+    .height_200_image img {height:200px; margin: 0 auto; display: block; }
+    .height_250_image img {height:250px; margin: 0 auto; display: block; }
+    .height_300_image img {height:300px; margin: 0 auto; display: block; }
+    .height_400_image img {height:400px; margin: 0 auto; display: block; }
+    .height_500_image img {height:500px; margin: 0 auto; display: block; }
+    .remark-slide-content {font-size: 16px;
+    .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+  </style>
+  <script type='text/x-mathjax-config'>
+     MathJax.Hub.Config({
+       tex2jax: {inlineMath: [['$','$']]}
+     });
+  </script>
+  <script type='text/javascript' async
+    src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML'>
+  </script>
+  </head><body>
+  <textarea id='source'>
+layout: true
+    <div id='banner'>
+      <div class='masthead'>
+        <div id='logo'>
+          <a href='#' id='homepage'><img alt='General Assembly' src='https://dl.dropboxusercontent.com/u/407587/img/ga-lockup-0663e7bddc6871da69c1d60fb44713fe.png' /></a>
+        </div>
+        <h1 id="title"> Iteration</h1>
+      </div>
+    </div>
+ 
+---
+ 
+Week 1 | Lesson 2.3
+
+### LEARNING OBJECTIVES
+*After this lesson, you will be able to:*
+- Iterate using `for` loops
+- Iterate using `while` loops
+
+### STUDENT PRE-WORK
+*Before this lesson, you should already be able to:*
+- If you have time, watch a video on `for` and `while` loops so that
+you're familiar with the topic.
+
+???
+
+### LESSON GUIDE
+| TIMING  | TYPE  | TOPIC  |
+|:-:|---|---|
+| 10 min  | [Introduction](#introduction)   | `for` and `while` loops  |
+| 25 min  | [Demo / Guided Practice](#demo)  | `for` loops  |
+| 25 min  | [Demo / Guided Practice](#demo)  | `while` loops  |
+| 25 min  | [Independent Practice](#ind-practice)  |   |
+| 5 min  | [Conclusion](#conclusion)  |  |
+
+---
+
+<a name="for and `while` loops"></a>
+## Introduction: `for` and `while` loops (10 mins)
+The `for` statement is used to iterate over the elements of a sequence. It's
+used when you have a piece of code which you want to repeat *n* number of times.
+You can use any iterable object (such as strings, arrays, lists, tuples, dict and so on)
+in a `for` loop in Python.
+
+The `while` loop tells the computer to do something as long as a condition is met.
+A `while` loop consists of a block of code and a condition. The condition
+is evaluated, and if the condition is true, the code within the
+block is executed. This repeats until the condition becomes false.
+
+---
+
+<a name="for loops"></a>
+## Demo: `for` loops (25 mins)
+
+ ```python
+for count in [1, 2, 3]:
+    print(count)
+    print('Yes' * count)
+```
+
+This is a `for` loop. It has the heading starting with `for`, followed
+by a variable name (`count` in this case), the word `in`, some iterable,
+and a final colon. As with function definitions and other heading lines,
+the colon at the end of the line indicates that a consistently indented
+block of statements follows to complete the `for` loop.
+
+--
+
+##### iterable!?
+
+--
+
+A python object that can be iterated through. This includes the `list`,
+the `string`, and the `tuple`. It does not include `dict`.
+
+---
+
+Let's try a simple repeat `for` loop. When you just want to repeat the
+exact same thing a specific number of times. In that case only the
+length of the sequence, not the individual elements are important.
+
+```python
+for i in range(10):
+    print('Hello')
+```
+
+Let's try a `for` loop through words.
+
+```python
+word = 'computer'
+for letter in word:
+    print letter
+```
+
+Let's try using a `for` loop to print out a list.
+
+```python
+shuttles = [ 'columbia', 'endeavor', 'challenger',
+             'discovery', 'atlantis', 'enterprise',
+             'pathfinder' ]
+
+for shuttle in shuttles:
+    print shuttle
+```
+
+---
+
+Now, try creating a few `for` loops on your own.
+
+**Check** What is the basic syntax `for` a loop?
+
+
+<a name="while loops"></a>
+## Demo: `while` loops (25 mins)
+
+Let's create a simple counter using a `while` loop.
+
+ ```python
+count = 0
+while count < 5:
+    print count
+    count += 1  
+```
+
+and another
+
+```python
+a = 0		
+while a < 10:
+   a += 1
+   print a
+```
+---
+
+```python
+while True:
+    reply = raw_input('Enter text, [type "stop" to quit]: ')
+    print reply.lower()
+    if reply == 'stop':
+        break
+```
+
+This `while` loop will stop when the user types `stop`.
+
+---
+
+Remember, a `while` loop runs until the expression is `False`. The
+problem is, sometimes they don't stop. To avoid this, here are some rules to follow:
+
+1. Review your `while` statements and make sure that the boolean test
+will become False at some point.
+2. When in doubt, print out your test variable at the top and bottom of
+the `while` loop to see what it's doing.
+
+Now, try creating a few `while` loops on your own.
+
+**Check** What is a common problem that might occur with `while` loops? What are ways to avoid this problem?
+
+---
+
+<a name="ind-practice"></a>
+## Independent Practice: Topic (25 minutes)
+- Keep practicing `for` and `while` loops
+
+## Advanced
+- Figure out how to use a `for` loop over a dictionary
+- Figure out how to iterate over two iterables using `zip`
+- And what's a list comprehension?
+
+<a name="conclusion"></a>
+## Conclusion (5 mins)
+- When is a `for` loop useful?
+- When is a `while` loop useful?
+- What are the differences between `for` and `while` loops?
+- What is a problem that `while` loops run into?
+- What are some things you can do so you don't run into this problem with `while` loops?
+</textarea><script src='https://gnab.github.io/remark/downloads/remark-latest.min.js'></script><script>var slideshow = remark.create();</script></body></html>

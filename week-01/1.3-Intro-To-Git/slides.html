@@ -1,0 +1,806 @@
+<!DOCTYPE html><html><head>
+  <title>Title</title>
+  <meta charset='utf-8'>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+    body { font-family: 'Droid Serif'; font-size:10px; }
+    p, li, h3 {font-size: 24px;}
+    h1 {font-size: 42px;}
+    h2 {font-size: 36px;}
+    h3 {font-size: 30px;}
+    h4 {font-size: 24px;}
+    h5 {font-size: 18px;}
+    h1, h2, h3 {font-family: 'Yanone Kaffeesatz'; font-weight: normal;}
+    #banner { position: relative; left: -65px; top: -16px; width: 910px; height:55px; background-color: black; z-index: 9999}
+    #masthead { top: 0; padding: 0 1rem; position: absolute; z-index: 888; width: 100%; height: 3.5rem }
+    #title, #masthead #logo {position: absolute; top: 0px;}
+    #logo img {margin-top: 5px; margin-left: 5px} 
+    #title {color: white; right: 0px; text-align: right; margin-top: 0px; top: -8px; margin-right:10px}
+    #logo {left: 0px;}
+    #logo a img {width: 400px;}
+    .height_200_image img {height:200px; margin: 0 auto; display: block; }
+    .height_250_image img {height:250px; margin: 0 auto; display: block; }
+    .height_300_image img {height:300px; margin: 0 auto; display: block; }
+    .height_400_image img {height:400px; margin: 0 auto; display: block; }
+    .height_500_image img {height:500px; margin: 0 auto; display: block; }
+    .remark-slide-content {font-size: 16px;
+    .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+  </style>
+  <script type='text/x-mathjax-config'>
+     MathJax.Hub.Config({
+       tex2jax: {inlineMath: [['$','$']]}
+     });
+  </script>
+  <script type='text/javascript' async
+    src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML'>
+  </script>
+  </head><body>
+  <textarea id='source'>
+layout: true
+    <div id='banner'>
+      <div class='masthead'>
+        <div id='logo'>
+          <a href='#' id='homepage'><img alt='General Assembly' src='https://dl.dropboxusercontent.com/u/407587/img/ga-lockup-0663e7bddc6871da69c1d60fb44713fe.png' /></a>
+        </div>
+        <h1 id="title"> Intro to Git</h1>
+      </div>
+    </div>
+ 
+---
+ 
+Week 1 | Lesson 1.3
+
+### LEARNING OBJECTIVES
+*After this lesson, you will be able to:*
+
+1. Explain the difference between a local and remote repository
+1. Identify the three most common `git` workflows and be able to execute
+   them via the `git` cli
+1. Explain how we manage local and remote repositories via `git push`
+   and `git pull`
+
+---
+
+### STUDENT PRE-WORK
+*Before this lesson, you should already have:*
+
+- Completed [Code Academy: Learn Git](https://www.codecademy.com/learn/learn-git)
+- Installed [Homebrew](http://brew.sh/)
+- Installed `git`
+- Setup a GitHub account
+- Setup [SSH key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
+
+???
+
+> Do a quick check to see who has done the ssh key setup. Will most likely need to do this in class right now.
+Possibly ask John to have students try to squeeze it in through the day.
+
+### LESSON GUIDE
+| TIMING  | TYPE  | TOPIC  |
+|:-:|---|---|
+| 20 min  | [Introduction](#introduction)   | Git vs GitHub and version control  |
+| 15 min  | [Demo](#demo1)  | Workflows  |
+| 15 min  | [Demo](#demo2)  | Making and cloning repositories  |
+| 10 min  | [Demo](#demo3)  | Create a pull request on GitHub  |
+| 25 min  | [Independent Practice](#ind-practice)  
+| 5 min  | [Conclusion](#conclusion)
+
+---
+
+<a name="introduction"></a>
+### Version Control - Intro (20 mins)
+
+`git` is **not** Github.
+
+`git` is software.
+
+Github is a service.
+
+---
+
+#### What is `git`?
+
+[`git`](https://git-scm.com/) is:
+
+- a program you run from the command line
+- a distributed version control system
+- a tool for managing our local repositories
+- a client for interacting with Github
+
+Programmers use `git` so that they can keep the history of all the
+changes to their code. This means that they can rollback changes (or
+switch to older versions) as far back in time to when they started using
+`git` on their project.
+
+A codebase in `git` is referred to as a **repository**, or **repo**,
+for short.
+
+---
+
+#### What is Github?
+
+[Github](https://github.com/) is:
+
+- A hosting service for `git` repositories
+- A web interface to explore `git` repositories
+- A social network of programmers
+
+At Github:
+- We all have individual accounts and put our codebases on our Github account
+- We store and manage our remote repositories
+- You can follow users and star your favorite projects
+- Developers can access codebases on other public accounts
+
+GitHub *uses* `git`.
+
+--
+
+##### CAN YOU USE `git` WITHOUT Github?
+
+---
+
+### `whoami`
+
+The best way to learn about command line tools is at the command line.
+
+```bash
+$ whoami
+```
+
+.height_250_image[![](https://dl.dropboxusercontent.com/u/407587/img/philosophy_through_the_ages_aristotle_descrates_nietzsche_bertrand_russell_c_s_lewis_lil_jon.png)]
+
+--
+
+##### WHAT DID THIS TELL US?
+
+---
+
+### What is `git`?
+
+```bash
+$ which git
+```
+--
+
+##### WHAT DID THIS TELL US?
+
+--
+
+```bash
+$ man git
+...
+Git is a fast, scalable, distributed revision control system with an
+unusually rich command set that provides both high-level operations
+and full access to internals.
+```
+
+--
+
+##### HIGH-LEVEL? RICH COMMAND SET?
+
+---
+
+### High-Level v Low-Level
+
+High-level in the context of technical work means closer to the lay person i.e.
+less technical.
+
+You will grow more and more comfortable with working at a lower level,  
+
+.height_200_image[![high-level v low-level](https://dl.dropboxusercontent.com/u/407587/img/chapter-3-instruction-set-and-assembly-language-programming-6-638.jpg)]
+
+--
+
+but we should always start at a high-level.
+
+???
+
+PS: At a high-level, what is `git`?
+
+---
+
+### High-Level `git`
+
+`git` is a tool. What will we _do_ with it?
+
+--
+
+## Manage Repositories
+
+---
+
+### Managing Repositories via Workflows
+
+Here we go ..
+
+--
+
+.height_400_image[![high-level v low-level](https://dl.dropboxusercontent.com/u/407587/img/git-model.png)]
+
+---
+
+### Three Core Workflows
+
+--
+
+1. Placing a Project Under Version Control
+
+--
+
+2. Tracking Local Changes
+
+--
+
+3. Syncing with a Remote Repo
+
+---
+
+### Workflow 1: Placing a Project Under Version Control
+
+First,  create and navigate into a new directory on your `~/src` directory:
+
+```bash
+$ cd ~/src
+$ mkdir dummy-project
+$ cd dummy-project
+```
+
+--
+
+##### WHERE ARE YOU?
+
+--
+
+Find out where you are using `pwd`.
+
+---
+
+### Version Control on `dummy-project`
+
+You can place this project under Git revision control using the appropriate command
+**from within the project directory**.
+
+```bash
+$ git init
+Initialized empty Git repository in <location>
+```
+
+--
+
+You've now initialized the working directory.
+
+---
+
+#### The .git folder
+
+If we look at the contents of this empty folder using:
+
+```bash
+$ ls -A
+```
+
+--
+
+##### What do you see?
+
+--
+
+We should see that there is now a hidden folder called `.git` this is where all of the information about your repository is stored. There is no need for you to make any changes to this folder.
+
+---
+
+### `git log`
+
+Let's check the history of the this repo.
+
+```bash
+$ git log
+fatal: your current branch 'master' does not have any commits yet
+```
+
+--
+
+##### `fatal`? Sounds bad. What does the error message mean?
+
+--
+
+We haven't done any work yet, but ...
+
+--
+
+`dummy-project` is now under version control.
+
+---
+
+### DESKCHECK: _Write the sequence of commands necessary to perform Workflow 1: Placing a Project Under Version Control._
+
+Hint: there's only 1.
+
+---
+
+### Workflow 2: Tracking Local Changes
+
+A primary purpose of version control is to allow us to work on code and keep track
+of the work that we are doing. Let's take a look at this process.
+
+---
+
+### How `git` works
+
+Our local repository consists of three "trees": maintained by `git`.
+
+- **Working Directory**: which holds the actual files.
+- **Index**: which acts as a staging area
+- **HEAD**: which points to the last commit you've made.
+
+.height_300_image[![Three Trees](https://dl.dropboxusercontent.com/u/407587/img/3-tree.png)]
+---
+
+Let's create a new file:
+
+```bash
+$ touch a.txt
+```
+
+--
+
+##### ON WHICH TREE CAN WE FIND `a.txt`?
+
+---
+
+If we run `git status` we should get:
+
+```bash
+$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	a.txt
+
+nothing added to commit but untracked files present
+(use "git add" to track)
+```
+
+This means that there is a new **untracked** file. Next, tell `git` to
+take a snapshot of the contents of all files under the current directory.
+
+```bash
+$ git add -A
+```
+
+--
+
+##### ON WHICH TREE CAN WE FIND `a.txt`?
+
+---
+
+After this, `git status` returns:
+
+```bash
+$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+(use "git rm --cached <file>..." to unstage)
+
+	new file:   a.txt
+```
+
+---
+
+### MAC ONLY: Ugh!, What about those ugly `.DS_Store` files?
+
+
+.height_250_image[![ugh](https://media.giphy.com/media/5daVsq6hkeiY0/giphy.gif)]
+
+---
+
+### ADVANCED: `.gitignore`
+
+Tell `.git` to ignore certain files.
+
+We are going to tell `.git` not to manage `.DS_Store` files by adding
+a file called `.gitignore`. We can create this file using any text
+editor and placing it in the root of our repository. Here, I am going to
+do it very quickly from the command line using my favorite editor, `vi`.
+
+---
+
+### Ignore `.DS_Store`
+
+**ONLY DO THIS IF YOU ARE VERY COMFORTABLE
+WITH WHAT WE HAVE DONE SO FAR**.
+
+
+```bash
+$ git reset         # reset git
+$ touch .gitignore  # create a new file called .gitignore
+$ vi .gitignore     # open the file in the cli text editor vi
+```
+
+--
+
+**Press `i` to enter insert mode and type** `**/.DS_Store`.
+
+--
+
+**Save the file by typing `<esc>:wq`**. This is just how `vi` works. If you are
+cruising with this stuff (or it is review), I encourage you to check out `vi`.
+
+--
+
+Get back to our workflow.
+
+--
+
+```bash
+$ git add -A
+```
+
+---
+
+### ALL TOGETHER NOW
+
+```bash
+$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+    new file:   a.txt
+```
+
+--
+
+We may have different information here ...
+
+--
+
+##### WHAT DO WE ALL NEED TO HAVE? WHAT IS THE GOAL OF THIS WORKFLOW?
+
+--
+
+##### ON WHICH TREE CAN WE FIND `a.txt`?
+---
+
+This snapshot is now stored in a temporary staging area.
+
+`git` maintains a pointer to this area called the "Index".
+
+.height_250_image[![Three Trees](https://dl.dropboxusercontent.com/u/407587/img/3-tree.png)]
+
+```bash
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+      new file:   a.txt
+```
+
+---
+
+### Commit our Changes
+
+To permanently store the contents of the index to the repository you need to run:
+
+```bash
+$ git commit -m "ADDFILE a.txt"
+```
+
+If you added a `.gitignore` make sure to reflect that in your message.
+
+`commit` is the command; the `-m` flag lets you add a "commit message"
+documenting your change, which you should always do. (If you don't use
+the `-m` flag, git will open a text editor and prompt you for a message.)
+
+---
+
+You should now get:
+
+```bash
+[master (root-commit) 8434c0e] ADDFILE a.txt .gitignore
+ 2 files changed, 1 insertion(+)
+ create mode 100644 .gitignore
+ create mode 100644 a.txt
+```
+
+--
+
+### `commit` Message Best Practices
+
+I have found a best practice in commit messages to be the following:
+
+```
+git commit -m 'SHORT_HIGH_LEVEL more detailed description'
+```
+
+---
+
+### A Clean Repo
+
+.height_250_image[![Three Trees](https://dl.dropboxusercontent.com/u/407587/img/3-tree.png)]
+
+We are now all back to the `HEAD` i.e. we have a clean repo.
+
+```bash
+$ git status
+On branch master
+nothing to commit, working tree clean
+```
+
+---
+
+### A Clean Repo
+
+.height_250_image[![Three Trees](https://media.giphy.com/media/EaSH6bwyEQVkA/giphy.gif)]
+
+We are now all back to the `HEAD` i.e. we have a clean repo.
+
+```bash
+$ git status
+On branch master
+nothing to commit, working tree clean
+```
+
+---
+
+#### Checking the log
+
+If we want to view the commit history, we can run:
+
+```bash
+git log
+```
+
+You should see something similar to:
+
+```bash
+commit ec1b1ebad5927e74d498ee588190686c51cab446
+Author: <author>
+Date:   <date>
+
+Add a.txt .gitignore
+```
+
+???
+
+CHECK: What's a local repo?
+
+--
+
+### DESKCHECK: _Write the sequence of commands necessary to perform Workflow 2: Tracking Local Changes._
+
+Hint: There are 2.
+
+
+---
+
+### Workflow 3: Syncing with a Remote Repo
+
+---
+
+### Making a Github Repository
+
+Let's do this together:
+
+1. Go to your Github account, and click through to the "Repositories" tab on your profile
+2. In the right hand side, hit the green + button for `New repository`
+3. Name your repository `dummy-project`
+4. Check "Initialize this repository with a README"
+5. Click the big green Create Repository button
+
+---
+
+### Connect our Local and Remote Repositories
+
+```bash
+$ git remote add origin \
+  git@github.com:<YOURGITHUBNAME>github-name/dummy-project.git
+```
+
+**WAIT, WHAT? Why do you have slash in the middle of that command?**
+
+--
+
+You can break up long `shell` commands by adding a backslash then hitting `<ENTER>`.
+
+---
+
+### Connect our Local and Remote Repositories
+
+```bash
+$ git remote add origin \
+  git@github.com:<YOURGITHUBNAME>github-name/dummy-project.git
+```
+
+--
+
+Your local repository is now connected to your remote repository.
+
+--
+
+Verify this:
+
+```bash
+$ less .git/config
+```
+---
+
+### Connect our Local and Remote Repositories
+
+```bash
+$ git remote add origin \
+  git@github.com:<YOURGITHUBNAME>github-name/dummy-project.git
+```
+
+Your local repository is now connected to your remote repository.
+
+--
+
+But there's an issue ...
+--
+
+#### TPS: What is the issue?
+
+---
+
+### Push Me, Pull You
+
+.height_300_image[![Push Me, Pull You](https://dl.dropboxusercontent.com/u/407587/img/pushmepullyou.png)]
+
+Syncing Repos:
+
+- Use `git pull` to pull code from a remote repo to a local repo
+- Use `git push` to push code from a local repo to a remote repo
+---
+
+#### Pushing to Github
+
+In order to send files from our local machine to our remote repository on Github, we use the command `git push`. You also need to specify the name of the remote repo -- we called it `origin` -- and the name of the branch, in this case `master`.
+
+```bash
+git push -u origin master
+```
+
+> Check: What do you see?
+
+---
+
+### `failed to push`
+
+This should fail due to new files on the remote repo. This is a common part of a collaborative project workflow: someone makes changes to the remote while you are working on the local version, so you need to bring **your version** up to date by *fetching* and *merging* the additions. After that you can push your own changes.
+
+---
+
+#### Pulling from Github
+
+As we added the README.md in our remote repo, we need to first `pull` that file to our local repository to check that we haven't got a 'conflict'.
+
+```bash
+git pull origin master
+```
+
+Once we have done this, you should see the README file on your computer.
+
+```bash
+ls
+```
+
+---
+
+Open it up and type some kind of modification/addition, then stage and commit it again. (This time we're committing the specific file rather than everything in the directory; in this case either works.)
+
+```bash
+git add README.md
+git commit -m "UPDATE README test edit"
+```
+
+Now you can push your changes:
+
+```bash
+git push origin master
+```
+
+--
+
+Refresh your GitHub webpage, and the files should be there!
+
+---
+
+###  Forking and cloning
+
+Now that everyone has their first repository on GitHub, let's fork and clone a repository.
+
+Forking gives you a copy of an existing repository -- you can make any changes you want without affecting the original. (You can also propose that the maintainer of the original merge your changes!).
+
+Cloning gives you a local copy of a remote repository.
+
+Let's fork and then clone our DSI course repo, which includes all the specifications for your projects.
+
+---
+
+#### Fork the repo!
+
+While logged into GitHub, go to https://github.com/ga-students/DSI_SM_3 and click the icon that says 'fork'. That's it!
+
+--
+
+To retrieve the contents of the repo, all you need to do is navigate back to Home and `clone`:
+
+```bash
+$ cd ~/src
+$ git clone git@github.com:#YOURGITHUBNAME#/DSI_SM_3.git
+```
+
+(You can also copy that git@... string from GitHub by clicking the green button saying "Clone or download".)
+
+--
+
+```bash
+Cloning into 'DSI_SM_3'...
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+Checking connectivity... done.
+```
+
+---
+
+#### Syncing the repo
+
+We also need a way to keep your new copy of <our course> up-to-date. Let's tell Git what the "upstream" repo is:
+
+```bash
+git remote add upstream git@github.com:ga-students/DSI_SM_3.git
+```
+
+**(Look closely: where exactly is the "upstream" repo?)**
+
+--
+
+Now, you can update your local repo each morning with:
+
+```bash
+git pull upstream master
+```
+
+---
+
+<a name="demo"></a>
+## Create a pull request on GitHub - Demo (5 mins)
+
+Before you can open a pull request, you must create a branch in your local repository, commit to it, and push the branch to a repository or fork on GitHub.
+
+1. Visit the repository you pushed to
+2. Click the "Compare, review, create a pull request" button in the repository.
+3. You'll land right onto the compare page - you can click Edit at the top to pick a new branch to merge in, using the Head Branch dropdown.
+4. Select the target branch your branch should be merged to, using the Base Branch dropdown
+5. Review your proposed change
+6. Click "Click to create a pull request" for this comparison
+7. Enter a title and description for your pull request
+8. Click 'Send pull request'
+
+---
+
+<a name="ind-practice"></a>
+## Assess - Independent Practice (10 mins)
+- Draw a three-node representation of our course repo.
+- Add arrows showing direction that code might flow.
+- Label these arrows `push` and `pull`.
+- **Bonus**: label the full command you would need to `push` and `pull`
+
+
+<a name="conclusion"></a>
+## Conclusion (5 mins)
+Feel comfortable with Git and GitHub? Since we'll be using it a lot of coursework, let's get comfortable!
+</textarea><script src='https://gnab.github.io/remark/downloads/remark-latest.min.js'></script><script>var slideshow = remark.create();</script></body></html>
