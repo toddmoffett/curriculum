@@ -1,0 +1,175 @@
+<!DOCTYPE html><html><head>
+  <title>Title</title>
+  <meta charset='utf-8'>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+    body { font-family: 'Droid Serif'; }
+    h1, h2, h3 {font-family: 'Yanone Kaffeesatz';
+    font-weight: normal;}.remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+  </style>
+  <script type='text/x-mathjax-config'>
+     MathJax.Hub.Config({
+       tex2jax: {inlineMath: [['$','$']]}
+     });
+  </script>
+  <script type='text/javascript' async
+    src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML'>
+  </script>
+  </head><body>
+  <textarea id='source'>
+
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Plotting Classification Lab
+
+---
+
+<a name="introduction"></a>
+## Introduction: EDA - Exploratory Data Analysis (10 mins)
+
+In statistics, exploratory data analysis (EDA) is an approach to analyzing data sets to summarize their main characteristics, often with visual methods. A statistical model can be used or not, but primarily EDA is for seeing what the data can tell us beyond the formal modeling or hypothesis testing task.
+
+---
+
+<a name="introduction"></a>
+## Introduction: EDA - Exploratory Data Analysis (10 mins)
+
+EDA is a critical step in analyzing the data from an experiment. Here are the main reasons we use EDA:
+
+- Detecting mistakes
+- Checking assumptions
+- Preliminary selection of appropriate models
+- Determining relationships among explanatory variables
+- Assessing direction and rough size of relationships between explanatory and outcome variables
+
+---
+
+<a name="introduction"></a>
+## Introduction: EDA - Exploratory Data Analysis (10 mins)
+
+Loosely speaking, any method of looking at data that does not include formal statistical modeling and inference falls under the term *exploratory data analysis.*
+
+---
+
+### Connecting to a Data Source
+
+When first starting the Tableau software, you’ll be required to connect to a data source. There are many data source connectors available in Tableau as shown in the screen shot below:
+
+<div  style="margin: 0 auto; width: 150px;">
+<img src="assets/images/graph1.png" width="150px">
+</div>
+
+We will use the Text File data source connector.
+
+For now, let's connect to `breast-cancer-wisconsin.data.csv`.
+
+---
+
+Once your data source has been selected and the corresponding file or connection setting specified, Tableau will try to make sense of the data (for databases, it will allow the selection of the specific table which contains the data that requires analysis / visualization).
+
+Tableau will present a list of data fields as *Dimensions* and *Measures* which can be dragged and dropped as Columns and Rows, as shown on image as point 1.  
+
+Point 2 shows how you can sort the data on the graph, and point 3 shows where you can use measures in the attributes of the graph.
+
+# ![](./assets/images/week 4. 3 graph2.png)
+
+Tableau also has the ability to define calculated fields like Excel formulas, where you can use fields from your data as part of the calculated field as shown in 2a below.  Point 2b indicates whether the calculated field is valid.
+
+# ![](./assets/images/week 4. 3 graph3.png)
+
+Below are examples of the types of graphs that Tableau can produce:
+
+# ![](./assets/images/week 4. 3 graph4.png)
+
+Histogram
+
+# ![](./assets/images/week 4. 3 graph5.png)
+
+Box Plot
+
+# ![](./assets/images/week 4. 3 graph6.png)
+
+Gantt Chart
+
+# ![](./assets/images/week 4. 3 graph7.png)
+
+Word Cloud
+
+# ![](./assets/images/week 4. 3 graph8.png)
+
+In Tableau, there is an easy to use menu called “Show Me” which allows the type of chart you would like to visualize.  
+
+Once it has been selected, it guides you through the Measures and Dimensions that are needed in order to visualize the selected chart.  Below is a screen shot of the “Show Me” menu.
+
+# ![](./assets/images/week 4. 3 graph9.png)
+
+
+
+<a name="demo"></a>
+## Demo: Demo (15 mins)
+
+>  Note: Open up Tableau and demonstrate how to connect to a Data Source and produce some simple scatter plots charts.
+
+> Note: Demonstrate the difference between a dimension and a measure.
+
+
+<a name="guided-practice"></a>
+## Guided Practice: Tableau (25 mins)
+
+Using Tableau we can start visually exploring the data to see which features correlate with malignant or benign tumors. We are using the [Wisconsin Diagnostic Breast Cancer (WDBC) data](./assets/datasets/)
+
+The initial exploratory visualization is to determine whether there are visual correlations between the features which could be used in a machine learning model in predicting whether cells are malignant or benign.  This is best performed in Tableau using a scatter plot as shown below.
+
+Orange means the tumor is malignant, blue means the tumor is benign.  As mentioned in the WDBC documentation, the first feature sets are mean averages and they are denoted here with their feature names ending with ‘1’.
+
+# ![](./assets/images/week 4. 3 graph10.png)
+
+As we can see easily see above, there is no correlation between ‘symmetry’ and a number of features like ‘fractal’, ‘smoothness’, texture’.
+
+Once we have identified features that don’t overlap (or don’t overlap as much), these make perfect candidates for a machine learning model.
+
+
+<a name="ind-practice"></a>
+## Independent Practice: Tableau and feature correlation (25 minutes)
+
+> Note: Students should use Tableau to start visually exploring their project data to see which features correlate.
+
+<a name="conclusion"></a>
+## Conclusion (5 mins)
+- Review independent practice deliverable(s)
+- Recap topic(s) covered
+
+
+### ADDITIONAL RESOURCES
+
+- [Tableau chart types](https://www.interworks.com/blog/ccapitula/2014/08/04/tableau-essentials-chart-types-introduction)
+- [Build a Scatter Plot with Tableau](https://onlinehelp.tableau.com/current/pro/online/mac/en-us/buildexamples_scatter.html)
+- [Scatter Plot Help](https://onlinehelp.tableau.com/v8.1/pro/online/en-us/buildexamples_scatter.html)
+
+
+## Introduction
+
+Use Tableau to build Project 4 dataset comparison plots.
+
+- Compile your comparison data in CSV.
+- Open Tableau and create a new data source pointing to your data.
+- Create a new Tableau Worksheet and produce a scatter plot of the measure pairs.
+
+## Hint:
+A scatter plot requires two measures and one dimension. Drop one measure on the ‘Rows’ bar and one measure on the ‘Columns’ bar. To plot individual points on the scatter plot, drop the dimension representing unique tests on the ‘Color’ mark button.
+
+#### Requirements
+
+- Pull and connect only relevant data.
+- Use your data to produce scatter plots of the measure pairs.
+
+#### Deliverables
+
+- Use Tableau to make plots of kNN: k vs. accuracy, k vs. precision, k vs. recall
+- Use Tableau to make plots of logistic: C vs. accuracy, C vs. precision, C vs. recall
+- Use Tableau to put best kNN and best logistic on the same plot
+
+## Additional Resources
+- [Plotting Classification](http://www.mathworks.com/help/stats/examples/classification.html?requestedDomain=www.mathworks.com)
+- [How to choose the right chart or graph](http://www.tableau.com/learn/whitepapers/which-chart-or-graph-is-right-for-you)
+</textarea><script src='https://gnab.github.io/remark/downloads/remark-latest.min.js'></script><script>var slideshow = remark.create();</script></body></html>
